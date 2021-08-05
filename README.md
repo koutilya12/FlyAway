@@ -1,2 +1,2 @@
 # flyaway
-An Airline booking Portal, Frontend with JSP &amp; Backend with Java, Hibernate &amp; Mysql
+An Airline booking Portal. Frontend with JSP, Backend with Java, Hibernate &amp; Mysql
