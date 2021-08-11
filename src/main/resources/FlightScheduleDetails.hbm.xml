@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "FlightScheduleDetails" table = "flight_schedule_details">
+      
+      <meta attribute = "class-description">
+         This class contains the FlightScheduleDetails. 
+      </meta>
+      
+      <id name = "flightId" type = "long" column = "flightId">
+         <generator class="native"/>
+      </id>
+      <property name = "source"  type = "int" column = "source"/>
+      <property name = "destination" column = "destination" type = "int"/>
+      <property name = "airlineId" column = "airLineId" type = "long"/>
+      <property name = "price" column = "price" type = "double"/>
+      <property name = "departureTime" column = "departureTime" type = "Date"/>
+      <property name = "arrivalTime" column = "arrivalTime" type = "Date"/>
+      <property name = "capacity" column = "capacity" type = "int"/>
+      <property name = "filledCapacity" column = "filledCapacity" type = "int"/>
+      <property name = "flightStatus" column = "status" type = "String"/>
+          
+   </class>
+</hibernate-mapping>
