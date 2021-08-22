@@ -1,14 +1,24 @@
 package com.airlines.flyaway.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "air_lines")
-public class AirLine {
+public class AirLine implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7997938870084769137L;
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long airLineId;
 	private String airLineName;
 	

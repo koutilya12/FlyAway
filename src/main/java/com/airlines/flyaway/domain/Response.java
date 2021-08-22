@@ -7,6 +7,28 @@ public class Response {
 	private Object data;
 	
 	
+	public Response(String status, String errorMessage, Object data) {
+		super();
+		this.status = status;
+		this.errorMessage = errorMessage;
+		this.data = data;
+	}
+	
+	
+	public Response(String status, String errorMessage) {
+		super();
+		this.status = status;
+		this.errorMessage = errorMessage;
+	}
+
+	
+
+	public Response(String status) {
+		super();
+		this.status = status;
+	}
+
+
 	public String getStatus() {
 		return status;
 	}
@@ -24,6 +46,12 @@ public class Response {
 	}
 	public void setData(Object data) {
 		this.data = data;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Response [status=" + status + ", errorMessage=" + errorMessage + ", data=" + data + "]";
 	}
 
 }

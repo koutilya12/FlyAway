@@ -1,5 +1,7 @@
 package com.airlines.flyaway.constants;
 
+import java.util.stream.Stream;
+
 public enum UserTypes {
 	
 	ADMIN("A"),
@@ -22,6 +24,9 @@ public enum UserTypes {
     System.out.println(userType.value);
     
  }
+	public static UserTypes getStatus(String value) {
+		return Stream.of(UserTypes.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
+	}
     
 			
 

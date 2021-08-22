@@ -1,5 +1,6 @@
 package com.airlines.flyaway.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -7,6 +8,8 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,9 +20,15 @@ import com.airlines.flyaway.constants.convertors.FlightStatusConvertor;
 
 @Entity
 @Table(name = "flight_schedule_details")
-public class FlightScheduleDetails {
+public class FlightScheduleDetails implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1754122564085577219L;
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long flightId;
 	
 	@OneToOne//(cascade = CascadeType.ALL)
