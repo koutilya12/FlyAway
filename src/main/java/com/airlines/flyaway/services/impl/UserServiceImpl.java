@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 
 import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.dao.FlyAwayDao;
-import com.airlines.flyaway.dao.impl.FlywAwayDaoImp;
+import com.airlines.flyaway.dao.impl.FlyAwayDaoImp;
 import com.airlines.flyaway.domain.Response;
 import com.airlines.flyaway.domain.User;
 import com.airlines.flyaway.helpers.Validator;
@@ -24,13 +24,18 @@ public class UserServiceImpl implements UserService {
 	
 	public UserServiceImpl() {
 		super();
-		this.dao = new FlywAwayDaoImp();
+		this.dao = new FlyAwayDaoImp();
 	}
 
 	@Override
-	public Response validateLogin(User user) {			
+	public Response validateLogin(User user) {
+		String errorMessage = Validator.validateLoginUser(user);
+		if(errorMessage != null) {
+			return new Response(FlyawayConstants.FAILED, errorMessage);
+		}
 		Session session = this.dao.openSession();	    		
 		String str = "FROM User u WHERE u.emailId = '" + user.getEmailId() + "' AND u.password = '" + user.getPassword() + "'";		
+		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery(str);
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) query.list();

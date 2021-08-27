@@ -11,7 +11,7 @@ public interface AirLineService {
 	 */
 	public Response insertAirLine(AirLine airLine);
 	/**
-	 * Performsdeletion of AirLine.
+ 	 * Performs deletion of AirLine.
 	 * @param airLine
 	 * @return Response with Status success If successfully deleted or else deletion failed.
 	 */

@@ -13,13 +13,13 @@ import com.airlines.flyaway.dao.FlyAwayDao;
  * @author koutilya
  *
  */
-public class FlywAwayDaoImp implements FlyAwayDao {
+public class FlyAwayDaoImp implements FlyAwayDao {
 	
 	
 	private SessionFactory factory;
 	
 	
-	public FlywAwayDaoImp() {
+	public FlyAwayDaoImp() {
 		super();
 		this.factory  = getDBFactory();
 	}
