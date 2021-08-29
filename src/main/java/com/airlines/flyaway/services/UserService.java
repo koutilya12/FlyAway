@@ -13,10 +13,10 @@ public interface UserService {
 	  public Response validateLogin(User user);
 	  /**
 	   * Gets User Details.
-	   * @param userId
+	   * @param user
 	   * @return Response with Data as User Details
 	   */
-	  public Response getUserDetails(long userId);
+	  public Response getUserDetails(User user);
       /**
        * Changes Password.
        * @param oldPassword

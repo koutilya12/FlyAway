@@ -6,7 +6,7 @@ public class FlightTicketBooking {
 	private long bookingId;
 	private Date bookingTime;
 	private long userId;
-	private long flighdId;
+	private long flightId;
 	private int noOfPersons;
 	private double totPrice;
 	private String transactionId;
@@ -30,10 +30,10 @@ public class FlightTicketBooking {
 		this.userId = userId;
 	}
 	public long getFlighdId() {
-		return flighdId;
+		return flightId;
 	}
 	public void setFlighdId(long flighdId) {
-		this.flighdId = flighdId;
+		this.flightId = flighdId;
 	}
 	public int getNoOfPersons() {
 		return noOfPersons;

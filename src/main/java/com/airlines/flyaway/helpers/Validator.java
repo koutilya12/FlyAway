@@ -2,6 +2,7 @@ package com.airlines.flyaway.helpers;
 
 import com.airlines.flyaway.domain.AirLine;
 import com.airlines.flyaway.domain.City;
+import com.airlines.flyaway.domain.FlightScheduleDetails;
 import com.airlines.flyaway.domain.User;
 
 public class Validator {
@@ -58,5 +59,41 @@ public class Validator {
 	        }
 		return null;
 	}
+
+	public static String validateFlightSchedule(FlightScheduleDetails flightScheduleDetails) {
+		   if(flightScheduleDetails == null) {
+	        	return "Flight details are empty";
+	        }
+	        if(flightScheduleDetails.getSource().getCityId() == 0l) {
+	        	return "Source City name is empty";
+	        }
+	        if(flightScheduleDetails.getDestination().getCityId() == 01) {
+	        	return "Destination city is empty";
+	        }
+	        if(flightScheduleDetails.getAirLineId().getAirLineId() == 0l) {
+	        	return "Airline is empty";
+	        }
+	        if(flightScheduleDetails.getPrice() == 0l) {
+	        	return "Price is empty";
+	        }
+	        if(flightScheduleDetails.getDepartureTime() == null) {
+	        	return "Departure time is empty";
+	        }
+	        if(flightScheduleDetails.getArrivalTime() == null) {
+	        	return "Arrival time is empty";
+	        }
+	        if(flightScheduleDetails.getCapacity() == 0) {
+	        	return "Capacity is empty";
+	        }
+	        return null;
+		
+	}
+
+	public static String validateUserDetails(User user) {
+		if((user.getUserId() == 0l) || (user.getMobileNum() == null || user.getMobileNum().isBlank())) {
+			return "User details empty";
+	       }
+		return null;
+    }
 
 }

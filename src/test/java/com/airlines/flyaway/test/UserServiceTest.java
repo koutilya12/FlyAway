@@ -15,7 +15,7 @@ import com.airlines.flyaway.services.impl.UserServiceImpl;
 @Ignore
 public class UserServiceTest {
 	
-	@Test
+	//@Test
 	public void validateLoginTest() {
 		User user = validateUser();
 		UserService userService = new UserServiceImpl();
@@ -30,8 +30,27 @@ public class UserServiceTest {
 		user.setPassword("maryy@user");
 		return user;
 	}
-
+	
 	@Test
+	public void validateUserDetails() {
+		User user = prepareUserDetailsObject();
+		UserService userService = new UserServiceImpl();
+		Response response = userService.getUserDetails(user);
+		if(response.getData() != null) {
+			System.out.println(response.getData());
+			Assert.assertTrue(response.getData() != null);
+		}
+		
+	}
+
+	private User prepareUserDetailsObject() {
+		User user = new User();
+		user.setUserId(2);
+		user.setMobileNum("7999779900");
+		return user;
+	}
+
+	//@Test
 	public void registerUserTest() {
 		User user = createUser();
 		UserService userService = new UserServiceImpl();

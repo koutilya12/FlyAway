@@ -1,10 +1,10 @@
 package com.airlines.flyaway.domain;
 
 public class PassengerDetails {
-	private long bookingId;
+	private Long bookingId;
 	private String passengerName;
 	private String gender;
-	private int age;
+	private Integer age;
 	private String mobileNumber;
 	private String govDocumentId;
 	

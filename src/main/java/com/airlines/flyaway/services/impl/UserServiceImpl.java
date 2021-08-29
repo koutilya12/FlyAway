@@ -50,8 +50,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Response getUserDetails(long userId) {
-		return null;
+	public Response getUserDetails(User user) {
+		String errorMessage = Validator.validateUserDetails(user);
+		if(errorMessage != null) {
+			return new Response(FlyawayConstants.FAILED, errorMessage);
+		}
+		Session session = this.dao.openSession();	    		
+		String str = "FROM User WHERE userId = '" + user.getUserId() + "' OR mobileNum = '" + user.getMobileNum() + "'";
+		Query query = session.createQuery(str);
+		List<User> list = (List<User>) query.list();
+		session.close();
+		
+		if(list != null && !list.isEmpty()) {
+			return new Response(list); 
+	    }else {
+	    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.INVALID_USER_DETAILS);
+	    }
 	}
 
 	@Override

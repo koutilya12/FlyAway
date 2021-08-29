@@ -10,6 +10,7 @@ import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.dao.FlyAwayDao;
 import com.airlines.flyaway.dao.impl.FlyAwayDaoImp;
 import com.airlines.flyaway.domain.AirLine;
+import com.airlines.flyaway.domain.City;
 import com.airlines.flyaway.domain.Response;
 import com.airlines.flyaway.helpers.Validator;
 import com.airlines.flyaway.services.AirLineService;
@@ -33,7 +34,7 @@ public class AirLineServiceImpl implements AirLineService{
 			return new Response(FlyawayConstants.FAILED, errorMessage);
 			
 		}
-		errorMessage = ValidateExistingAirLine(airLine);
+		errorMessage = validateExistingAirLine(airLine);
 		if(errorMessage != null) {
 			return new Response(FlyawayConstants.FAILED, errorMessage);
 		}
@@ -43,7 +44,6 @@ public class AirLineServiceImpl implements AirLineService{
 	    }else {
 	    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.DB_ERROR);
 	    }  
-		
 		
 	}
 
@@ -57,7 +57,11 @@ public class AirLineServiceImpl implements AirLineService{
 	}
 
 
-	private String ValidateExistingAirLine(AirLine airLine) {
+	private String validateExistingAirLine(AirLine airLine) {
+		Response response = getAirLine(airLine);		
+		if(response.getData() != null && !((List<AirLine>) response.getData()).isEmpty()) {
+			return "This AirLine already exists";
+		}
 
 		return null;
 	}

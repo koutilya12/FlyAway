@@ -9,4 +9,5 @@ public class FlyawayConstants {
 	public static final String DB_ERROR = "Error In DB";
 	public static final String CITY_NOT_FOUND = "Cities not found";
 	public static final String AIRLINES_NOT_FOUND = "Airlines not found";
+	public static final String INVALID_USER_DETAILS = "Invalid User Details";
 }
