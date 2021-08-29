@@ -37,7 +37,7 @@ public class FlightScheduleDetails implements Serializable {
 	@OneToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "destination", referencedColumnName = "cityId")
 	private City destination;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "airlineId", referencedColumnName = "airLineId")
 	private AirLine airLineId;
 	private double price;

@@ -1,14 +1,15 @@
 package com.airlines.flyaway.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class FlightTicketBooking {
-	private long bookingId;
+	private Long bookingId;
 	private Date bookingTime;
-	private long userId;
-	private long flightId;
-	private int noOfPersons;
-	private double totPrice;
+	private  flightId;
+	private User user;
+    private List<PassengerDetails> passengers;
+    private Double totPrice;
 	private String transactionId;
 	
 	public long getBookingId() {
@@ -23,23 +24,11 @@ public class FlightTicketBooking {
 	public void setBookingTime(Date bookingTime) {
 		this.bookingTime = bookingTime;
 	}
-	public long getUserId() {
-		return userId;
-	}
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
 	public long getFlighdId() {
 		return flightId;
 	}
 	public void setFlighdId(long flighdId) {
 		this.flightId = flighdId;
-	}
-	public int getNoOfPersons() {
-		return noOfPersons;
-	}
-	public void setNoOfPersons(int noOfPersons) {
-		this.noOfPersons = noOfPersons;
 	}
 	public double getTotPrice() {
 		return totPrice;
