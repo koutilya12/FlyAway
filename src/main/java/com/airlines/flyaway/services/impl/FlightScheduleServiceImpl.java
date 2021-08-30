@@ -56,16 +56,17 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
 	@Override
 	public List<FlightScheduleDetails> searchFlights(FlightScheduleSearchCriteria flightScheduleSearchCriteria) {
 		Session session = this.dao.openSession();	    		
-		String str = "select f FROM FlightScheduleDetails f INNER JOIN  f.source s INNER JOIN f.destination d  WHERE (0=:sourceFlag OR  s.cityName = :source) AND (0=:destinationFlag OR d.cityName = :destination) AND (0= :departureFlag OR (departureTime BETWEEN :fromDepartureTime AND :toDepartureTime)) AND (0= :arrivalFlag OR (arrivalTime BETWEEN :fromArrivalTime AND :toArrivalTime))";
-
+		String str = "select f FROM FlightScheduleDetails f INNER JOIN f.flightId fId INNER JOIN f.source s INNER JOIN f.destination d  WHERE (0 =:flightIdFlag OR fId.flightId =:flightId) AND (0=:sourceFlag OR  s.cityName = :source) AND (0=:destinationFlag OR d.cityName = :destination) AND (0= :departureFlag OR (departureTime BETWEEN :fromDepartureTime AND :toDepartureTime)) AND (0= :arrivalFlag OR (arrivalTime BETWEEN :fromArrivalTime AND :toArrivalTime))";
+		
 		@SuppressWarnings("unchecked")
 		Query<FlightScheduleDetails> query = session.createQuery(str);
+		query.setParameter("flightIdFlag", (flightScheduleSearchCriteria == null || flightScheduleSearchCriteria.getFlightId() == 0l) ? 0 : 1);
 		query.setParameter("sourceFlag", (flightScheduleSearchCriteria == null || flightScheduleSearchCriteria.getSource() == null) ? 0 : 1);
 		query.setParameter("destinationFlag", (flightScheduleSearchCriteria == null || flightScheduleSearchCriteria.getDestination() == null) ? 0 : 1);
 		query.setParameter("departureFlag", (flightScheduleSearchCriteria == null || flightScheduleSearchCriteria.getDepartureTime() == null) ? 0 : 1);
 		query.setParameter("arrivalFlag", (flightScheduleSearchCriteria == null || flightScheduleSearchCriteria.getArrivalTime() == null) ? 0 : 1);
 
-		
+		query.setParameter("flightId",  flightScheduleSearchCriteria.getFlightId() == 0l ? null : flightScheduleSearchCriteria.getFlightId());
 		query.setParameter("source",  flightScheduleSearchCriteria.getSource() == null ? null : flightScheduleSearchCriteria.getSource().getCityName());
 		query.setParameter("destination",  flightScheduleSearchCriteria.getDestination() == null ? null : flightScheduleSearchCriteria.getDestination().getCityName());
 		query.setParameter("fromDepartureTime",  flightScheduleSearchCriteria.getDepartureTime() == null ? null :getFromDate(flightScheduleSearchCriteria.getDepartureTime()));

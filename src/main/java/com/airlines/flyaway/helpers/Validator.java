@@ -3,6 +3,7 @@ package com.airlines.flyaway.helpers;
 import com.airlines.flyaway.domain.AirLine;
 import com.airlines.flyaway.domain.City;
 import com.airlines.flyaway.domain.FlightScheduleDetails;
+import com.airlines.flyaway.domain.FlightTicketBooking;
 import com.airlines.flyaway.domain.User;
 
 public class Validator {
@@ -95,5 +96,25 @@ public class Validator {
 	       }
 		return null;
     }
+
+	public static String validateFlightTicketBooking(FlightTicketBooking flightTicketBooking) {
+		
+		if(flightTicketBooking.getBookingTime() == null) {
+			return "Booking time is empty";
+		}
+		if(flightTicketBooking.getFlight().getFlightId() == 0l) {
+			return "flight Id is empty";
+		}
+		if(flightTicketBooking.getUser().getUserId() == 0l) {
+			return "user id is empty";
+		}
+		if(flightTicketBooking.getPassengers() == null || flightTicketBooking.getPassengers().isEmpty()) {
+			return "passengers list empty";
+		}
+		if(flightTicketBooking.getFlightBookingStatus() == null) {
+			return "flight booking status is empty";
+		}
+		return null;
+	}
 
 }

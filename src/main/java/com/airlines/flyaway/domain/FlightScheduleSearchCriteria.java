@@ -9,9 +9,8 @@ public class FlightScheduleSearchCriteria {
 	private Date departureTime;
 	private Date arrivalTime;
 	private int noOfPersons;
-	
-	
 	private long flightId;
+	
 	public long getFlightId() {
 		return flightId;
 	}
