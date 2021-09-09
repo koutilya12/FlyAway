@@ -1,5 +1,7 @@
 package com.airlines.flyaway.constants;
 
+import java.util.stream.Stream;
+
 public enum GovDocumentType {
 	
 	AADHAAR("A"),
@@ -23,7 +25,8 @@ public enum GovDocumentType {
 		System.out.println(govDocType.value);
 	}
 	
+	public static GovDocumentType getGovType(String value) {
+		return Stream.of(GovDocumentType.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
+	}
 	
-	
-
 }

@@ -177,6 +177,8 @@ public class FlightScheduleDetails implements Serializable {
 				+ ", arrivalTime=" + arrivalTime + ", capacity=" + capacity + ", filledCapacity=" + filledCapacity
 				+ ", status=" + status + "]";
 	}
+
+
 	
 	
 	

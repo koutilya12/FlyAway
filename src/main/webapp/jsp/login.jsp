@@ -20,7 +20,7 @@
       <p class="point">&#9650;</p>
     </div><!--/.back-img-->
     <%   
-String errorMessage = (String) request.getAttribute("errorMesssage"); 
+String errorMessage = (String) request.getAttribute("errorMessage"); 
 if(errorMessage != null){
 	out.print("Error "+errorMessage);  
 }

@@ -1,5 +1,7 @@
 package com.airlines.flyaway.constants;
 
+import java.util.stream.Stream;
+
 public enum FlightBookingStatus {
 	
 	CREATED ("C"),
@@ -26,6 +28,11 @@ public enum FlightBookingStatus {
 		System.out.println(fbstatus.getValue());
 		
 	}
+	
+	public static FlightBookingStatus getStatus(String value) {
+		return Stream.of(FlightBookingStatus.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
+	}
+
 	
 
 }

@@ -1,5 +1,7 @@
 package com.airlines.flyaway.constants;
 
+import java.util.stream.Stream;
+
 public enum PassengerGender {
 	
 	
@@ -15,6 +17,10 @@ public enum PassengerGender {
 
 	public String getValue() {
 		return value;
+	}
+	
+	public static PassengerGender getGender(String value) {
+		return Stream.of(PassengerGender.values()).filter(c -> c.getValue().equals(value)).findFirst().orElse(null);
 	}
 
 }

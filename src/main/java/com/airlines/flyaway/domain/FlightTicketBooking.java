@@ -3,6 +3,8 @@ package com.airlines.flyaway.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,16 +14,38 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.airlines.flyaway.constants.FlightBookingStatus;
+import com.airlines.flyaway.constants.convertors.FlightBookingStatusConvertor;
+import com.airlines.flyaway.constants.convertors.GovDocumentTypeConvertor;
+
 @Entity
 @Table(name = "flight_ticket_booking")
 public class FlightTicketBooking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bookingId;
-	public Long getBookingId() {
+	private long bookingId;
+	private Date bookingTime;
+	@OneToOne
+	//@Column(name="flightId")
+	@JoinColumn(name = "flightId", referencedColumnName = "flightId")
+	private FlightScheduleDetails flight;
+	@OneToOne
+	@JoinColumn(name = "userId", referencedColumnName = "userId")
+	private User user;
+	@OneToMany//(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
+    private List<PassengerDetails> passengers;
+    private Double totPrice;
+	private String transactionId;
+	@Convert(converter = FlightBookingStatusConvertor.class)
+	private FlightBookingStatus flightBookingStatus;
+    private int noOfPersons;
+
+	
+	public long getBookingId() {
 		return bookingId;
 	}
-	public void setBookingId(Long bookingId) {
+	public void setBookingId(long bookingId) {
 		this.bookingId = bookingId;
 	}
 	public Date getBookingTime() {
@@ -60,18 +84,18 @@ public class FlightTicketBooking {
 	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
-	private Date bookingTime;
-	@OneToOne
-	@JoinColumn(name = "flight", referencedColumnName = "flightId")
-	private FlightScheduleDetails flight;
-	@OneToOne
-	@JoinColumn(name = "user", referencedColumnName = "userId")
-	private User user;
-	@OneToMany
-	@JoinColumn(name = "passengers", referencedColumnName = "passengers")
-    private List<PassengerDetails> passengers;
-    private Double totPrice;
-	private String transactionId;
+	public FlightBookingStatus getFlightBookingStatus() {
+		return flightBookingStatus;
+	}
+	public void setFlightBookingStatus(FlightBookingStatus flightBookingStatus) {
+		this.flightBookingStatus = flightBookingStatus;
+	}
+	public int getNoOfPersons() {
+		return noOfPersons;
+	}
+	public void setNoOfPersons(int noOfPersons) {
+		this.noOfPersons = noOfPersons;
+	}
 	
 	
 

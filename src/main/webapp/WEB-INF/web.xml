@@ -13,12 +13,10 @@
 		<welcome-file>default.jsp</welcome-file> -->
 	</welcome-file-list>
 
-
 	<servlet>
 		<servlet-name>citiescontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.CitiesController</servlet-class>
 	</servlet>
-
 
 	<servlet>
 		<servlet-name>logincontroller</servlet-name>
@@ -29,13 +27,33 @@
 		<servlet-name>homecontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.HomeController</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>airlinescontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.AirLineController</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>flightschedulecontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.FlightScheduleController</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>searchflightscontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.SearchFlightsController</servlet-class>
+	</servlet>
+	
+	<servlet>
+	    <servlet-name>bookticketscontroller</servlet-name>
+	    <servlet-class>com.airlines.flyaway.controller.BookTicketsController</servlet-class>
+	</servlet>
+	
 
 
 	<servlet-mapping>
 		<servlet-name>citiescontroller</servlet-name>
 		<url-pattern>/cities</url-pattern>
 	</servlet-mapping>
-
 
 	<servlet-mapping>
 		<servlet-name>logincontroller</servlet-name>
@@ -47,4 +65,23 @@
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+		<servlet-name>airlinescontroller</servlet-name>
+		<url-pattern>/airlines</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>flightschedulecontroller</servlet-name>
+		<url-pattern>/flightschedule</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>searchflightscontroller</servlet-name>
+		<url-pattern>/searchFlights</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	     <servlet-name>bookticketscontroller</servlet-name>
+	     <url-pattern>/bookTickets</url-pattern>
+	</servlet-mapping>
 </web-app>

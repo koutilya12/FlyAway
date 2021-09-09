@@ -11,10 +11,12 @@
 
 <body>
 <ul>
-  <li><a class="active" href="#home">Home</a></li>
+  <li><a class="active" href="/flyaway/home">Home</a></li>
   <li><a href="/flyaway/cities">Cities</a></li>
-  <li><a href="#airlines">AirLines</a></li>
-  <li><a href="#flightSchedules">Flight Schedules</a></li>
+  <li><a href="/flyaway/airlines">AirLines</a></li>
+  <li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
+  <li><a href="/flyaway/searchFlights">Book Tickets</a></li>
+  
   <li style="float:right"><a class="active" href="logout">Logout</a></li>  
 </ul>
 

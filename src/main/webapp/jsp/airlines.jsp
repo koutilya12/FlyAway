@@ -1,15 +1,14 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import = "java.util.List,java.util.ArrayList" %>
-<%@ page import = "com.airlines.flyaway.domain.City" %>
+<%@ page import = "com.airlines.flyaway.domain.AirLine" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <style><%@include file="/css/home.css"%></style>
-
-<title>Cities</title>
+<title>AirLines</title>
 <%   
 String errorMessage = (String) request.getAttribute("errorMessage"); 
 if(errorMessage != null){
@@ -21,8 +20,9 @@ if(successMessage != null){
 out.print(successMessage);
 }
 
-List<City> cities = new ArrayList<>();
-cities = (List<City>) request.getAttribute("cities");
+List<AirLine> airlines = new ArrayList<>();
+airlines = (List<AirLine>) request.getAttribute("airlines");
+
 %>
 </head>
 <body>
@@ -35,27 +35,29 @@ cities = (List<City>) request.getAttribute("cities");
   
   <li style="float:right"><a class="active" href="logout">Logout</a></li>  
 </ul>
-   <div align="center">
+
+<div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>List of cities</h2></caption>
+            <caption><h2>List of airlines</h2></caption>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Airline</th>
             </tr>
-            <c:forEach var="city" items="${cities}">
+            <c:forEach var="airLine" items="${airlines}">
                 <tr>
-                    <td><c:out value="${city.cityId}" /></td>
-                    <td><c:out value="${city.cityName}" /></td>
+                    <td><c:out value="${airLine.airLineId}" /></td>
+                    <td><c:out value="${airLine.airLineName}" /></td>
                 </tr>
             </c:forEach>
         </table>
     </div>
     <div>
-        <form action="/flyaway/cities" method="post">  
-          <input type="text" name="cityName"/><br/>  
-          <input type="submit" value="Add City"/>  
+        <form action="/flyaway/airlines" method="post">  
+          <input type="text" name="airLineName"/><br/>  
+          <input type="submit" value="Add Airline"/>  
         </form>
     </div>
+
 
 </body>
 </html>

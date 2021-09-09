@@ -114,6 +114,9 @@ public class Validator {
 		if(flightTicketBooking.getFlightBookingStatus() == null) {
 			return "flight booking status is empty";
 		}
+		if(flightTicketBooking.getNoOfPersons() == 0  ||flightTicketBooking.getPassengers().size() != flightTicketBooking.getNoOfPersons()) {
+			return "Invalid passengers size";
+		}
 		return null;
 	}
 
