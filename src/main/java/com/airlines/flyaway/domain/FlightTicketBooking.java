@@ -97,6 +97,13 @@ public class FlightTicketBooking {
 		this.noOfPersons = noOfPersons;
 	}
 	
+	@Override
+	public String toString() {
+		return "FlightTicketBooking [bookingId=" + bookingId + ", bookingTime=" + bookingTime + ", flight=" + flight
+				+ ", user=" + user + ", passengers=" + passengers + ", totPrice=" + totPrice + ", transactionId="
+				+ transactionId + ", flightBookingStatus=" + flightBookingStatus + ", noOfPersons=" + noOfPersons + "]";
+	}
+	
 	
 
 }

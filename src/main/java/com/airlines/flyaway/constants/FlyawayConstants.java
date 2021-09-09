@@ -12,4 +12,5 @@ public class FlyawayConstants {
 	public static final String INVALID_USER_DETAILS = "Invalid User Details";
 	public static final String FLIGHTS_NOT_AVAILABLE = "Flights not available";
 	public static final String AIRLINES_NOT_AVAILABLE = "Airline not available";
+	public static final String INVALID_BOOKING_DETAILS = "Invalid Booking details";
 }

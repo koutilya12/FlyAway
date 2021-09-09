@@ -79,4 +79,11 @@ public class PassengerDetails {
 		this.id = id;
 	}
 	
+	@Override
+	public String toString() {
+		return "PassengerDetails [id=" + id + ", bookingId=" + bookingId + ", passengerName=" + passengerName
+				+ ", gender=" + gender + ", age=" + age + ", mobileNumber=" + mobileNumber + ", govDocumentId="
+				+ govDocumentId + ", govDocumentType=" + govDocumentType + "]";
+	}
+	
 }

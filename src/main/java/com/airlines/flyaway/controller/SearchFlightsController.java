@@ -21,6 +21,11 @@ import com.airlines.flyaway.services.impl.FlightScheduleServiceImpl;
 
 public class SearchFlightsController extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4575954159416361148L;
+
 	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/searchFlights.jsp");

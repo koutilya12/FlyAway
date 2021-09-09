@@ -73,11 +73,13 @@ function bookTickets() {
     var flightId = document.createElement("input");    
     flightId.value=<%=request.getParameter("flightId")%>;
     flightId.name="flightId";
+    flightId.type="hidden";
     bookTicketForm.appendChild(flightId);
     
     var noOfPersons = document.createElement("input");  
     noOfPersons.value=<%=noOfPersons%>;
     noOfPersons.name="noOfPersons";
+    noOfPersons.type="hidden";
     bookTicketForm.appendChild(noOfPersons);
 
 	bookTicketForm.submit();

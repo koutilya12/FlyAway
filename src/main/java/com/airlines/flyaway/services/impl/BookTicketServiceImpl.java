@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.airlines.flyaway.constants.FlightBookingStatus;
 import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.dao.FlyAwayDao;
 import com.airlines.flyaway.dao.impl.FlyAwayDaoImp;
@@ -102,6 +103,18 @@ public class BookTicketServiceImpl implements BookTicketService{
 		else { 
 		return null;
 		}
+	}
+
+
+	@Override
+	public Response updateTicket(String bookingId, String txnId) {
+		FlightBookingStatus status = (txnId == null) ? FlightBookingStatus.WITHDRAWN : FlightBookingStatus.APPROVED;
+		Session session = this.dao.openSession();
+		Transaction tx = session.beginTransaction();		
+
+		tx.commit();	
+		session.close();
+		return null;
 	}
 
 }

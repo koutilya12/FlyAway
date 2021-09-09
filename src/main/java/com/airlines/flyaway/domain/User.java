@@ -19,7 +19,6 @@ import com.airlines.flyaway.constants.convertors.UserTypesConvertor;
 @Table(name = "user")
 public class User implements Serializable {
 	
-	
 	/**
 	 * 
 	 */
@@ -112,5 +111,10 @@ public class User implements Serializable {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", mobileNum=" + mobileNum + ", emailId=" + emailId
+				+ ", password=" + password + ", type=" + type + ", uStatus=" + uStatus + "]";
+	}
 }

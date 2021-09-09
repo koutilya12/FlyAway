@@ -11,4 +11,13 @@ public interface BookTicketService {
 	 */
 	public Response saveTicket(FlightTicketBooking flightTicketBooking);
 	
+	/**
+	 * 
+	 * @param bookingId
+	 * @param txnId
+	 * @return
+	 */
+
+	public Response updateTicket(String bookingId, String txnId);
+	
 }

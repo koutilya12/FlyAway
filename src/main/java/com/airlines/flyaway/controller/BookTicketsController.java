@@ -33,14 +33,18 @@ public class BookTicketsController extends HttpServlet {
 		if (respo != null) {
 			if (respo.getStatus().equals(FlyawayConstants.SUCCESS)) {
 				request.setAttribute("successMessage", "Ticket(s) successfully booked");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/dummyBankPayment.jsp");
+				requestDispatcher.forward(request, response);
 			} else {
 				request.setAttribute("errorMessage", respo.getErrorMessage());
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/getTickets.jsp");
+				requestDispatcher.forward(request, response);
 			}
 		} else {
 			request.setAttribute("errorMessage","Unable to book ticket(s)");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/getTickets.jsp");
+			requestDispatcher.forward(request, response);
 		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/bank.jsp");
-		requestDispatcher.forward(request, response);
 	}
 
 	private FlightTicketBooking prepareFlightTicketBookingObject(HttpServletRequest request) {

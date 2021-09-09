@@ -48,6 +48,11 @@
 	    <servlet-class>com.airlines.flyaway.controller.BookTicketsController</servlet-class>
 	</servlet>
 	
+	<servlet>
+	    <servlet-name>processPaymentsController</servlet-name>
+	    <servlet-class>com.airlines.flyaway.controller.ProcessPaymentsController</servlet-class>
+	</servlet>
+	
 
 
 	<servlet-mapping>
@@ -84,4 +89,10 @@
 	     <servlet-name>bookticketscontroller</servlet-name>
 	     <url-pattern>/bookTickets</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+	     <servlet-name>processPaymentsController</servlet-name>
+	     <url-pattern>/processPayments</url-pattern>
+	</servlet-mapping>
+	
+	
 </web-app>
