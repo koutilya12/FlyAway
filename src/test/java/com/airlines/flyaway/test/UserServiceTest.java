@@ -31,7 +31,7 @@ public class UserServiceTest {
 		return user;
 	}
 	
-	@Test
+	//@Test
 	public void validateUserDetails() {
 		User user = prepareUserDetailsObject();
 		UserService userService = new UserServiceImpl();
@@ -58,6 +58,16 @@ public class UserServiceTest {
 		//System.out.println(user.getUserId()+"ss");
 		Assert.assertTrue(response != null && FlyawayConstants.SUCCESS.equals(response.getStatus()) && user.getUserId() != 0l);
 
+	}
+	
+	@Test
+	public void changePasswordTest() {
+		User  user = new User();
+		user.setUserId(1);
+		user.setPassword("john@newuser");
+		UserService userService = new UserServiceImpl();
+		Response response = userService.changePassword("johnn@user", user);
+		Assert.assertTrue(response != null && FlyawayConstants.SUCCESS.equals(response.getStatus()));
 	}
 
 	private User createUser() {

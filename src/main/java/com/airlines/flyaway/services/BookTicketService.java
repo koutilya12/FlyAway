@@ -15,9 +15,9 @@ public interface BookTicketService {
 	 * 
 	 * @param bookingId
 	 * @param txnId
-	 * @return
+s	 * @return
 	 */
 
-	public Response updateTicket(String bookingId, String txnId);
+	public Response updateTicket(long bookingId, String txnId);
 	
 }

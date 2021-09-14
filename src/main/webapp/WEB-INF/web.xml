@@ -12,6 +12,10 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file> -->
 	</welcome-file-list>
+	
+    <listener>
+        <listener-class>com.airlines.flyaway.listeners.WithdrawTicketsListener</listener-class>
+    </listener>
 
 	<servlet>
 		<servlet-name>citiescontroller</servlet-name>
@@ -53,6 +57,17 @@
 	    <servlet-class>com.airlines.flyaway.controller.ProcessPaymentsController</servlet-class>
 	</servlet>
 	
+	<servlet>
+	    <servlet-name>changepasswordcontroller</servlet-name>
+	    <servlet-class>com.airlines.flyaway.controller.ChangePasswordController</servlet-class>
+	</servlet>
+	
+	<servlet>
+	    <servlet-name>registercontroller</servlet-name>
+	    <servlet-class>com.airlines.flyaway.controller.RegisterController</servlet-class>
+	</servlet>
+	
+
 
 
 	<servlet-mapping>
@@ -89,10 +104,20 @@
 	     <servlet-name>bookticketscontroller</servlet-name>
 	     <url-pattern>/bookTickets</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 	     <servlet-name>processPaymentsController</servlet-name>
 	     <url-pattern>/processPayments</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+	     <servlet-name>changepasswordcontroller</servlet-name>
+	     <url-pattern>/changePassword</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	     <servlet-name>registercontroller</servlet-name>
+	     <url-pattern>/register</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

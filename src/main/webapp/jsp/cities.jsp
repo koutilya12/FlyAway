@@ -33,6 +33,7 @@ cities = (List<City>) request.getAttribute("cities");
   <li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
   <li><a href="/flyaway/searchFlights">Book Tickets</a></li>
   
+  <li style ="float:right"><a class="active" href="/flyaway/changePassword">Change Password</a></li>
   <li style="float:right"><a class="active" href="logout">Logout</a></li>  
 </ul>
    <div align="center">

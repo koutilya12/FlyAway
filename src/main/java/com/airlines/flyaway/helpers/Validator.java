@@ -119,5 +119,16 @@ public class Validator {
 		}
 		return null;
 	}
+	
+	public static String  validateChangePassword(User user) {
+		
+		if(user.getUserId() == 0l) {
+			return "user id is empty";
+		}
+		if(user.getPassword() == null) {
+			return "password is empty";
+		}
+		return null;
+	}
 
 }

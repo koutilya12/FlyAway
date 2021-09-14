@@ -8,30 +8,30 @@
 </head>
 <body>
  <form id="myForm" action="/flyaway/processPayments" method="post"> 
-          <label>From City</label><br>
+          <label>dummy bank payment</label><br>
           <input type="button" value="Success"  onclick="processPayments('success')"/>  
           <input type="button" value="failure"  onclick="processPayments('failure')"/><br/>              
   </form>
 </body>
 <script>
-function bookTickets(status) {
+function processPayments(status) {
 
 	var bookTicketForm = document.getElementById("myForm");
 	
     var bookingId = document.createElement("input");    
-    bookingId.value=<%=request.getParameter("bookingId")%>;
+    bookingId.value=<%=request.getAttribute("bookingId")%>;
     bookingId.name="bookingId";
     bookingId.type="hidden";
     bookTicketForm.appendChild(bookingId);
     
     var transId = document.createElement("input");    
-    transId.value = status == 'success' ?  Math.random() : null;
+    transId.value = status == 'success' ? Math.floor(Math.random() * 100000) + 1; : null;
     transId.name="transId";
     transId.type="hidden";
     bookTicketForm.appendChild(transId);
 
 	bookTicketForm.submit();
-	}
+	
 }
 
 </script>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <style><%@include file="/css/login.css"%></style>
-<title></title>
+<title>login page</title>
 </head>
 
 <body>
@@ -43,7 +43,11 @@ if(errorMessage != null){
         <br/>
          <input type = "submit" value = "Sign In" />
       </form>
+      <a href="/flyaway/register">
+         <button>Register</button>
+         </a>
     </div><!--/.form-section-->
+    
  </div><!--/.signin-->
 </body>
 </html>

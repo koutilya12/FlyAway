@@ -28,6 +28,7 @@ public class SearchFlightsController extends HttpServlet {
 
 	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/searchFlights.jsp");
 		requestDispatcher.forward(request, response);
 	}

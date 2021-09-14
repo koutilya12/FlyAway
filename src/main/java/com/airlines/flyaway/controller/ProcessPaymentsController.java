@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.airlines.flyaway.constants.FlightBookingStatus;
 import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.domain.City;
 import com.airlines.flyaway.domain.FlightScheduleDetails;
@@ -32,7 +33,7 @@ public class ProcessPaymentsController extends HttpServlet{
 		BookTicketService bookTicketService = new BookTicketServiceImpl();
 		String bookingId = request.getParameter("bookingId");
 		String txnId = request.getParameter("transId");
-		Response reponse =  bookTicketService.updateTicket(bookingId,txnId);
+		Response reponse =  bookTicketService.updateTicket(Long.parseLong(bookingId),txnId);
 		if (response != null) {
 			if (FlyawayConstants.SUCCESS.equals(reponse.getStatus())) {
 				request.setAttribute("successMessage", FlyawayConstants.SUCCESS);

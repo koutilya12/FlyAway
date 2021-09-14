@@ -70,7 +70,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Response changePassword(String oldPassword, User user) {
-		return null;
+		String errorMessage = Validator.validateChangePassword(user);
+		if(errorMessage != null) {
+			return new Response(FlyawayConstants.FAILED, errorMessage);
+		}
+		Session session = this.dao.openSession();
+		Transaction tx =  session.beginTransaction();		
+		String str = "UPDATE User  SET password=:pWd WHERE userId=:uId AND password=:oPwd";
+		Query query = session.createQuery(str);
+		query.setParameter("pWd",user.getPassword());
+		query.setParameter("uId",user.getUserId());
+		query.setParameter("oPwd", oldPassword);
+		int r = query.executeUpdate();
+		
+		tx.commit();
+		session.close();
+		
+		if(r != 0) {
+			return new Response(FlyawayConstants.SUCCESS); 
+	    }else {
+	    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.FAILED_PASSWORD_CHANGE);
+	    }
 	}
 
 	@Override
@@ -79,25 +99,26 @@ public class UserServiceImpl implements UserService {
 		if(errorMessage != null) {
 			return new Response(FlyawayConstants.FAILED, errorMessage);
 		}
-		saveUser(user);		
+		if(!saveUser(user)) {
+			return new Response(FlyawayConstants.FAILED, "Registration Failed");
+		}
 		return new Response(FlyawayConstants.SUCCESS);
 	}
 
-	private void saveUser(User user) {
+	private boolean saveUser(User user) {
 		Session session = this.dao.openSession();
-		Transaction tx =  session.beginTransaction();		
-		session.save(user);
+		boolean b = false;
 		try {
+			Transaction tx =  session.beginTransaction();		
+			session.save(user);
 			tx.commit();
-		} catch (SecurityException e) {
+			b = true;
+		}catch(Exception e) {
 			e.printStackTrace();
-		} 
-		session.close();
+		}finally {
+			session.close();
+		}
+		return b;
 	}
-
-
-
-
-	
 
 }

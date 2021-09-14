@@ -33,6 +33,7 @@ public class BookTicketsController extends HttpServlet {
 		if (respo != null) {
 			if (respo.getStatus().equals(FlyawayConstants.SUCCESS)) {
 				request.setAttribute("successMessage", "Ticket(s) successfully booked");
+				request.setAttribute("bookingId",flightTicketBooking.getBookingId());
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/dummyBankPayment.jsp");
 				requestDispatcher.forward(request, response);
 			} else {

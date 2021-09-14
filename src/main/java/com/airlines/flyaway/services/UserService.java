@@ -30,6 +30,7 @@ public interface UserService {
        * @return Response with status success if successfully registered or else returns error Message.
        */
 	  public Response registerUser(User user);
+
 }
 
 

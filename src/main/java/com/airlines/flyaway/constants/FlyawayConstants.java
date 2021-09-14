@@ -13,4 +13,8 @@ public class FlyawayConstants {
 	public static final String FLIGHTS_NOT_AVAILABLE = "Flights not available";
 	public static final String AIRLINES_NOT_AVAILABLE = "Airline not available";
 	public static final String INVALID_BOOKING_DETAILS = "Invalid Booking details";
+	public static final String FAILED_PASSWORD_CHANGE = "Password change failed";
+	public static final String PASSWORDS_NOT_MATCHING = "Passwords not matching";
+	public static final String PASSWORDS_CANNOT_BE_SAME ="Passwords can't be same";
+	public static final String UNABLE_TO_UPDATE_TICKET = "Unable to update ticket";
 }

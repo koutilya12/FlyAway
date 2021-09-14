@@ -1,6 +1,7 @@
 package com.airlines.flyaway.test;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.airlines.flyaway.constants.FlyawayConstants;
@@ -10,6 +11,7 @@ import com.airlines.flyaway.domain.User;
 import com.airlines.flyaway.services.GetTicketsService;
 import com.airlines.flyaway.services.impl.GetTicketsServiceImpl;
 
+@Ignore
 public class GetTicketsServiceTest {
 	
 	@Test
