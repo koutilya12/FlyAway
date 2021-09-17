@@ -10,7 +10,6 @@ public class UserStatusConvertor  implements AttributeConverter<UserStatus, Stri
 
 	@Override
 	public String convertToDatabaseColumn(UserStatus attribute) {
-		System.out.println(attribute.getValue());
 		return (attribute == null) ? null : attribute.getValue();
 	}
 

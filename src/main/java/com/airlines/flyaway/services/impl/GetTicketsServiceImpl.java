@@ -32,7 +32,7 @@ public class GetTicketsServiceImpl implements GetTicketsService{
 			@SuppressWarnings("unchecked")
 			List<FlightTicketBooking> list = (List<FlightTicketBooking>) query.list();
 			session.close();
-			
+			System.out.println(list.get(0).getFlightBookingStatus());
 			if(list != null && !list.isEmpty()) {
 				return new Response(FlyawayConstants.SUCCESS,list);
 		    }else {
@@ -41,7 +41,7 @@ public class GetTicketsServiceImpl implements GetTicketsService{
 		}catch(Exception e) {
 			e.printStackTrace();
 			session.close();
-	    	return new Response(FlyawayConstants.FAILED,"Unable to get user details ");
+	    	return new Response(FlyawayConstants.FAILED,"Unable to get ticket details ");
 		}
 		
 

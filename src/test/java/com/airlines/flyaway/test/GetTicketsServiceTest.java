@@ -17,7 +17,7 @@ public class GetTicketsServiceTest {
 	@Test
 	public void getTicketDetails() {
 		FlightTicketBooking flightTicketBooking = new FlightTicketBooking();
-		flightTicketBooking.setBookingId(16);
+		flightTicketBooking.setBookingId(26);
 		User user = new User();
 		user.setUserId(5);
 		flightTicketBooking.setUser(user);

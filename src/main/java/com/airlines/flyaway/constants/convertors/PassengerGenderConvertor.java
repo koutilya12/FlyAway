@@ -4,14 +4,12 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 import com.airlines.flyaway.constants.PassengerGender;
-import com.airlines.flyaway.constants.UserStatus;
 
 @Converter(autoApply = true)
 public class PassengerGenderConvertor implements AttributeConverter<PassengerGender, String> {
 	
 	@Override
 	public String convertToDatabaseColumn(PassengerGender attribute) {
-		System.out.println(attribute.getValue());
 		return (attribute == null) ? null : attribute.getValue();
 	}
 

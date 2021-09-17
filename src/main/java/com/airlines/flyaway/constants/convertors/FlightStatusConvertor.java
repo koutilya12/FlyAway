@@ -10,7 +10,6 @@ public class FlightStatusConvertor implements AttributeConverter<FlightStatus, S
 
 	@Override
 	public String convertToDatabaseColumn(FlightStatus attribute) {
-		System.out.println(attribute.getValue());
 		return (attribute == null) ? null : attribute.getValue();
 	}
 

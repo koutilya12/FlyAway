@@ -25,7 +25,7 @@ function processPayments(status) {
     bookTicketForm.appendChild(bookingId);
     
     var transId = document.createElement("input");    
-    transId.value = status == 'success' ? Math.floor(Math.random() * 100000) + 1; : null;
+    transId.value = status == 'success' ? Math.floor(Math.random() * 100000) + 1 : null;
     transId.name="transId";
     transId.type="hidden";
     bookTicketForm.appendChild(transId);

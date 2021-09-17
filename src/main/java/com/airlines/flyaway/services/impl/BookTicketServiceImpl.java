@@ -126,6 +126,7 @@ public class BookTicketServiceImpl implements BookTicketService {
 		FlightBookingStatus status = (txnId == null) ? FlightBookingStatus.WITHDRAWN : FlightBookingStatus.APPROVED;
 
 		FlightTicketBooking flightTicketBooking = new FlightTicketBooking();
+		flightTicketBooking.setBookingId(bookingId);
 		Response response = getTicketsService.getTicketBookingDetails(flightTicketBooking);
 
 		if (!FlyawayConstants.SUCCESS.equals(response.getStatus())) {
@@ -134,28 +135,38 @@ public class BookTicketServiceImpl implements BookTicketService {
 
 		FlightTicketBooking prevFlightTicketBooking = ((List<FlightTicketBooking>) response.getData()).get(0);
 		Session session = this.dao.openSession();
-		Transaction tx = session.beginTransaction();
-		insertIntoLog(prevFlightTicketBooking, session);
-		int r = updateTicket(txnId, status, session);
-		if (FlightBookingStatus.WITHDRAWN.equals(status)) {
-			releaseSeats(prevFlightTicketBooking.getFlight().getFlightId(), prevFlightTicketBooking.getNoOfPersons(),
-					session);
-		}
-		tx.commit();
-		session.close();
-		if (r != 0) {
-			return new Response(FlyawayConstants.SUCCESS);
-		} else {
+		int r;
+		try {
+			Transaction tx = session.beginTransaction();
+			//insertIntoLog(prevFlightTicketBooking, session);
+			r = updateTicket(txnId, status,bookingId, session);
+			if (FlightBookingStatus.WITHDRAWN.equals(status)) {
+				releaseSeats(prevFlightTicketBooking.getFlight().getFlightId(), prevFlightTicketBooking.getNoOfPersons(),
+						session);
+			}
+			tx.commit();
+			session.close();
+			if (r != 0) {
+				return new Response(FlyawayConstants.SUCCESS);
+			} else {
+				return new Response(FlyawayConstants.FAILED, FlyawayConstants.UNABLE_TO_UPDATE_TICKET);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.close();
 			return new Response(FlyawayConstants.FAILED, FlyawayConstants.UNABLE_TO_UPDATE_TICKET);
 		}
+
 	}
 
-	private int updateTicket(String txnId, FlightBookingStatus status, Session session) {
-		String str = "UPDATE FlightTicketBooking  SET transactionId = IF(:transactionIdFlag;:transactionId,null), flightBookingStatus = :flightBookingStatus WHERE bookingId=:bookingId";
+	private int updateTicket(String txnId, FlightBookingStatus status, long bookingId, Session session) {
+		String str = "UPDATE FlightTicketBooking  SET transactionId = IF(:transactionIdFlag,:transactionId,null), flightBookingStatus = :flightBookingStatus WHERE bookingId=:bookingId";
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery(str);
+		query.setParameter("transactionIdFlag", txnId == null ? 0 : 1);
 		query.setParameter("transactionId", txnId);
 		query.setParameter("flightBookingStatus", status);
+		query.setParameter("bookingId", bookingId);
 		int r = query.executeUpdate();
 		return r;
 	}
@@ -170,9 +181,11 @@ public class BookTicketServiceImpl implements BookTicketService {
 	}
 
 	private void insertIntoLog(FlightTicketBooking prevFlightTicketBooking, Session session) {
+	   System.out.println("prevFlightTicketBooking"+prevFlightTicketBooking.getFlightBookingStatus());
 		FlightTicketBookingLog logData = new FlightTicketBookingLog();
 		try {
 			BeanUtils.copyProperties(logData, prevFlightTicketBooking);
+			   System.out.println("logData"+logData.getFlightBookingStatus());
 			session.save(logData);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();

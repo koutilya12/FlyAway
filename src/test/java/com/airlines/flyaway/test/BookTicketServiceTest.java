@@ -25,6 +25,7 @@ import com.airlines.flyaway.services.impl.BookTicketServiceImpl;
 @Ignore
 public class BookTicketServiceTest {
 	
+	@Ignore
 	@Test
 	public void saveTicketTest() {
 		FlightTicketBooking flightTicketBooking = new FlightTicketBooking();
@@ -58,6 +59,14 @@ public class BookTicketServiceTest {
 		flightTicketBooking.setFlightBookingStatus(FlightBookingStatus.CREATED);
 		
 		return flightTicketBooking;
+		
+	}
+	
+	@Test
+	public void updateTicketTest() {
+		BookTicketService bookTicketService = new BookTicketServiceImpl(); 
+		Response response = bookTicketService.updateTicket(24l,"82415");
+		Assert.assertTrue(response != null && FlyawayConstants.SUCCESS.equals(response.getStatus()));
 		
 	}
 

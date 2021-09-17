@@ -10,7 +10,6 @@ public class UserTypesConvertor implements AttributeConverter<UserTypes, String>
 
 	@Override
 	public String convertToDatabaseColumn(UserTypes attribute) {
-		System.out.println(attribute.getValue());
 		return (attribute == null) ? null : attribute.getValue();
 	}
 

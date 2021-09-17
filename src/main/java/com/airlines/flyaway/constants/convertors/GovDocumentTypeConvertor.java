@@ -10,7 +10,6 @@ public class GovDocumentTypeConvertor implements AttributeConverter<GovDocumentT
 
 	@Override
 	public String convertToDatabaseColumn(GovDocumentType attribute) {
-		System.out.println(attribute.getValue());
 		return (attribute == null) ? null : attribute.getValue();
 	}
 

@@ -21,6 +21,7 @@
         <mapping class="com.airlines.flyaway.domain.FlightScheduleDetails"></mapping>
         <mapping class="com.airlines.flyaway.domain.User"></mapping>
         <mapping class="com.airlines.flyaway.domain.FlightTicketBooking"></mapping>
+        <mapping class="com.airlines.flyaway.domain.FlightTicketBookingLog"></mapping>
         <mapping class="com.airlines.flyaway.domain.PassengerDetails"></mapping>
         
    </session-factory>

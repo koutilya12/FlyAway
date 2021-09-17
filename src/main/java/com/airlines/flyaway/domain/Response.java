@@ -19,10 +19,6 @@ public class Response {
 		this.data = data;
 	}
 	
-	public Response(Object data) {
-		super();
-		this.data = data;
-	}
 
 	public Response(String status, String errorMessage) {
 		super();

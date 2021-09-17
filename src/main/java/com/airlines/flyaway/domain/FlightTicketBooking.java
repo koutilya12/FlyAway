@@ -3,7 +3,6 @@ package com.airlines.flyaway.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +15,6 @@ import javax.persistence.Table;
 
 import com.airlines.flyaway.constants.FlightBookingStatus;
 import com.airlines.flyaway.constants.convertors.FlightBookingStatusConvertor;
-import com.airlines.flyaway.constants.convertors.GovDocumentTypeConvertor;
 
 @Entity
 @Table(name = "flight_ticket_booking")

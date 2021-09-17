@@ -20,7 +20,7 @@ public class WithdrawTicketsListener implements ServletContextListener {
 		scheduler = Executors.newSingleThreadScheduledExecutor();
         Runnable command = new WithdrawTicketsThread();
         // Delay 1 Minute to first execution
-        long initialDelay = 1;
+        long initialDelay = 10;
         TimeUnit unit = TimeUnit.MINUTES;
         // period the period between successive executions
         long period = 60;// 60 Minute!

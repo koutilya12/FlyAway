@@ -9,13 +9,13 @@
 		<welcome-file>index.htm</welcome-file> -->
 		<welcome-file>jsp/login.jsp</welcome-file>
 <!-- 		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.htms</welcome-file>
 		<welcome-file>default.jsp</welcome-file> -->
 	</welcome-file-list>
 	
-    <listener>
+<!--      <listener>
         <listener-class>com.airlines.flyaway.listeners.WithdrawTicketsListener</listener-class>
-    </listener>
+    </listener>  -->
 
 	<servlet>
 		<servlet-name>citiescontroller</servlet-name>
@@ -65,6 +65,11 @@
 	<servlet>
 	    <servlet-name>registercontroller</servlet-name>
 	    <servlet-class>com.airlines.flyaway.controller.RegisterController</servlet-class>
+	</servlet>
+	
+	<servlet>
+	    <servlet-name>getticketscontroller</servlet-name>
+	    <servlet-class>com.airlines.flyaway.controller.GetTicketsController</servlet-class>
 	</servlet>
 	
 
@@ -118,6 +123,11 @@
 	<servlet-mapping>
 	     <servlet-name>registercontroller</servlet-name>
 	     <url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	     <servlet-name>getticketscontroller</servlet-name>
+	     <url-pattern>/getTickets</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
