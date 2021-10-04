@@ -1,6 +1,10 @@
 package com.airlines.flyaway.constants;
 
 public class FlyawayConstants {
+	
+	private FlyawayConstants() {
+	}
+	
 	public static final String SUCCESS = "success"; 
 	public static final String FAILED = "failed";
 	
@@ -17,4 +21,11 @@ public class FlyawayConstants {
 	public static final String PASSWORDS_NOT_MATCHING = "Passwords not matching";
 	public static final String PASSWORDS_CANNOT_BE_SAME ="Passwords can't be same";
 	public static final String UNABLE_TO_UPDATE_TICKET = "Unable to update ticket";
+	public static final String EMPTY_USER_DETAILS = "EMPTY_USER_DETAILS";
+	
+	
+	public static final String USER_SESSION_OBJECT = "userDetails";
+	public static final String LOGIN_URL = "/jsp/login.jsp";
+	public static final String HOME_URL = "/jsp/home.jsp";
+
 }

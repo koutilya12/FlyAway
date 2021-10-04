@@ -5,6 +5,9 @@
 <%@ page import = "com.airlines.flyaway.domain.FlightScheduleDetails" %>
 <%@ page import = "com.airlines.flyaway.domain.AirLine" %>
 <%@ page import = "com.airlines.flyaway.domain.City" %>
+<%@ page import = "com.airlines.flyaway.domain.User" %>
+<%@ page import = "com.airlines.flyaway.constants.UserTypes" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +21,9 @@ String errorMessage = (String) request.getAttribute("errorMessage");
 if(errorMessage != null){
 	out.print("Error "+errorMessage);
 }
+User  user = (User) session.getAttribute("userDetails");
+boolean isAdmin = (user != null && UserTypes.ADMIN.equals(user.getType())) ? true : false;
+boolean isCustomer = (user != null && UserTypes.CUSTOMER.equals(user.getType())) ? true : false;
 List<FlightScheduleDetails> flightScheduleDetails = new ArrayList<>();
 flightScheduleDetails = (List<FlightScheduleDetails>) request.getAttribute("flights");
 
@@ -27,18 +33,39 @@ String departureTime = request.getParameter("departureTime") != null ?  request.
 String arrivalTime = request.getParameter("arrivalTime") != null ?  request.getParameter("arrivalTime") : "";
 String noOfPersons = request.getParameter("noOfPersons") != null ?  request.getParameter("noOfPersons") : "";
 %>
-<ul>
-  <li><a class="active" href="/flyaway/home">Home</a></li>
-  <li><a href="/flyaway/cities">Cities</a></li>
-  <li><a href="/flyaway/airlines">AirLines</a></li>
-  <li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
-  <li><a href="/flyaway/searchFlights">Book Tickets</a></li>
-  
-  <li style ="float:right"><a class="active" href="/flyaway/changePassword">Change Password</a></li>
-  <li style="float:right"><a class="active" href="logout">Logout</a></li>  
-</ul>
+	<ul>
+		<li><a class="active" href="/flyaway/home">Home</a></li>
+		<%
+		if (isAdmin) {
+		%>
 
- <form id="myForm" action="/flyaway/searchFlights" method="post"> 
+		<li><a href="/flyaway/cities">Cities</a></li>
+		<li><a href="/flyaway/airlines">AirLines</a></li>
+		<li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
+		<%
+		}
+		%>
+		<%
+		if (isCustomer) {
+		%>
+		<li><a href="/flyaway/searchFlights">Book Tickets</a></li>
+		<li><a href="/flyaway/getTickets">Get Tickets</a></li>
+
+		<%
+		}
+		%>
+
+		<li style="float: right"><a class="active"
+			href="/flyaway/changePassword">Change Password</a></li>
+		<li style="float: right"><a class="active" href="logout">Logout</a></li>
+	</ul>
+	
+		<%
+	if (isCustomer) {
+	%>
+
+	<form id="myForm" align="center" action="/flyaway/searchFlights" method="post"> 
+	        <h2>Search Flights</h2> 
           <label>From City</label><br>
           <input id="source" type="text" name="source" value ="<%=source%>"/><br/>
           <label>To City</label><br>
@@ -86,6 +113,8 @@ String noOfPersons = request.getParameter("noOfPersons") != null ?  request.getP
             </c:forEach>
         </table>
     </div>
+       <% } %>
+    
 <script>
 function bookTicket(flightId) {
 	console.log(flightId);

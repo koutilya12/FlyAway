@@ -32,6 +32,7 @@ public class WithdrawTicketsThread implements Runnable {
 		boolean success = false;
 		try {
 			updateTickets();
+			success = true;
 		} catch (Exception e) {
 			System.out.println("Unable to perform scheuled task");
 			e.printStackTrace();
@@ -51,6 +52,9 @@ public class WithdrawTicketsThread implements Runnable {
 		Response response = getTicketService.getTicketBookingDetails(flightTicketBooking);
 		if (response != null && response.getData() != null) {
 			List<FlightTicketBooking> list = (List<FlightTicketBooking>) response.getData();
+			if(list.isEmpty()) {
+				return;
+			}
 			for (FlightTicketBooking ticket : list) {
 				bookTicketService.updateTicket(ticket.getBookingId(), null);
 			}

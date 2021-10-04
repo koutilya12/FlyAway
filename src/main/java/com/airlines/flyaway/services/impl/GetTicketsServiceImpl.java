@@ -25,15 +25,14 @@ public class GetTicketsServiceImpl implements GetTicketsService{
 	public Response getTicketBookingDetails(FlightTicketBooking flightTicketBooking) {
 		Session session = this.dao.openSession();
 		try {
-			String str = "FROM FlightTicketBooking WHERE (0 =:bookingIdFlag OR bookingId =:bookingId) AND (0 =:userIdFlag OR userId =:userId) AND (0 =:statusFlag OR flightBookingStatus = :flightBookingStatus) AND (0 =:bookingTimeFlag OR bookingTime < :bookingTime)";
+			String str = "FROM FlightTicketBooking WHERE (0 =:bookingIdFlag OR bookingId =:bookingId) AND (0 =:userIdFlag OR userId =:userId) AND (0 =:statusFlag OR flightBookingStatus = :flightBookingStatus) AND (0 =:bookingTimeFlag OR bookingTime <= :bookingTime)";
 			@SuppressWarnings("rawtypes")
 			Query query = session.createQuery(str);
 			prepareSearchQuery(flightTicketBooking, query);
 			@SuppressWarnings("unchecked")
 			List<FlightTicketBooking> list = (List<FlightTicketBooking>) query.list();
 			session.close();
-			System.out.println(list.get(0).getFlightBookingStatus());
-			if(list != null && !list.isEmpty()) {
+			if(list != null) {
 				return new Response(FlyawayConstants.SUCCESS,list);
 		    }else {
 		    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.INVALID_BOOKING_DETAILS);

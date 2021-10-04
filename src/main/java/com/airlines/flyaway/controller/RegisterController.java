@@ -32,6 +32,18 @@ public class RegisterController extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/register.jsp");
+		User user = prepareUeerObject(request);
+		UserService userService = new UserServiceImpl();
+		Response respo = userService.registerUser(user);
+		if(respo.getStatus().equals(FlyawayConstants.SUCCESS)) {
+			request.setAttribute("successMessage", "User Successfully Registered");
+		} else {
+			request.setAttribute("errorMessage", respo.getErrorMessage());
+		}
+		requestDispatcher.forward(request, response);
+	}
+
+	private User prepareUeerObject(HttpServletRequest request) {
 		User user = new User();
 		user.setUserName(request.getParameter("userName"));
 		user.setMobileNum(request.getParameter("mobileNum"));
@@ -39,13 +51,6 @@ public class RegisterController extends HttpServlet {
 		user.setPassword(request.getParameter("password"));
 		user.setType(UserTypes.CUSTOMER);
 		user.setuStatus(UserStatus.ACTIVE);
-		UserService userService = new UserServiceImpl();
-		Response respo = userService.registerUser(user);
-		if(respo != null && respo.getStatus().equals(FlyawayConstants.SUCCESS)) {
-			request.setAttribute("successMessage", "User Successfully Registered");
-		} else {
-			request.setAttribute("errorMessage", respo.getErrorMessage());
-		}
-			requestDispatcher.forward(request, response);
+		return user;
 	}
 }

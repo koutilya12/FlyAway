@@ -4,18 +4,24 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 	<display-name>ServletDemo</display-name>
+
+
 	<welcome-file-list>
-	<!-- 	<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file> -->
 		<welcome-file>jsp/login.jsp</welcome-file>
-<!-- 		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htms</welcome-file>
-		<welcome-file>default.jsp</welcome-file> -->
 	</welcome-file-list>
-	
-<!--      <listener>
-        <listener-class>com.airlines.flyaway.listeners.WithdrawTicketsListener</listener-class>
-    </listener>  -->
+
+	 <listener> <listener-class>com.airlines.flyaway.listeners.WithdrawTicketsListener</listener-class> 
+		</listener> 
+
+	<filter>
+		<filter-name>flyawayFilter</filter-name>
+		<filter-class>com.airlines.flyaway.filters.FlyAwayFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>flyawayFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>citiescontroller</servlet-name>
@@ -26,52 +32,56 @@
 		<servlet-name>logincontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.LoginController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>homecontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.HomeController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>airlinescontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.AirLineController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>flightschedulecontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.FlightScheduleController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>searchflightscontroller</servlet-name>
 		<servlet-class>com.airlines.flyaway.controller.SearchFlightsController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
-	    <servlet-name>bookticketscontroller</servlet-name>
-	    <servlet-class>com.airlines.flyaway.controller.BookTicketsController</servlet-class>
+		<servlet-name>bookticketscontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.BookTicketsController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
-	    <servlet-name>processPaymentsController</servlet-name>
-	    <servlet-class>com.airlines.flyaway.controller.ProcessPaymentsController</servlet-class>
+		<servlet-name>processPaymentsController</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.ProcessPaymentsController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
-	    <servlet-name>changepasswordcontroller</servlet-name>
-	    <servlet-class>com.airlines.flyaway.controller.ChangePasswordController</servlet-class>
+		<servlet-name>changepasswordcontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.ChangePasswordController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
-	    <servlet-name>registercontroller</servlet-name>
-	    <servlet-class>com.airlines.flyaway.controller.RegisterController</servlet-class>
+		<servlet-name>registercontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.RegisterController</servlet-class>
 	</servlet>
-	
+
 	<servlet>
-	    <servlet-name>getticketscontroller</servlet-name>
-	    <servlet-class>com.airlines.flyaway.controller.GetTicketsController</servlet-class>
+		<servlet-name>getticketscontroller</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.GetTicketsController</servlet-class>
 	</servlet>
-	
+	<servlet>
+		<servlet-name>logoutController</servlet-name>
+		<servlet-class>com.airlines.flyaway.controller.LogoutController</servlet-class>
+	</servlet>
+
 
 
 
@@ -84,50 +94,54 @@
 		<servlet-name>logincontroller</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>homecontroller</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>airlinescontroller</servlet-name>
 		<url-pattern>/airlines</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>flightschedulecontroller</servlet-name>
 		<url-pattern>/flightschedule</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>searchflightscontroller</servlet-name>
 		<url-pattern>/searchFlights</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	     <servlet-name>bookticketscontroller</servlet-name>
-	     <url-pattern>/bookTickets</url-pattern>
+		<servlet-name>bookticketscontroller</servlet-name>
+		<url-pattern>/bookTickets</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	     <servlet-name>processPaymentsController</servlet-name>
-	     <url-pattern>/processPayments</url-pattern>
+		<servlet-name>processPaymentsController</servlet-name>
+		<url-pattern>/processPayments</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	     <servlet-name>changepasswordcontroller</servlet-name>
-	     <url-pattern>/changePassword</url-pattern>
+		<servlet-name>changepasswordcontroller</servlet-name>
+		<url-pattern>/changePassword</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	     <servlet-name>registercontroller</servlet-name>
-	     <url-pattern>/register</url-pattern>
+		<servlet-name>registercontroller</servlet-name>
+		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	     <servlet-name>getticketscontroller</servlet-name>
-	     <url-pattern>/getTickets</url-pattern>
+		<servlet-name>getticketscontroller</servlet-name>
+		<url-pattern>/getTickets</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>logoutController</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
 </web-app>

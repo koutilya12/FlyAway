@@ -5,6 +5,9 @@
 <%@ page import = "com.airlines.flyaway.domain.FlightScheduleDetails" %>
 <%@ page import = "com.airlines.flyaway.domain.AirLine" %>
 <%@ page import = "com.airlines.flyaway.domain.City" %>
+<%@ page import = "com.airlines.flyaway.domain.User" %>
+<%@ page import = "com.airlines.flyaway.constants.UserTypes" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -18,20 +21,42 @@ String errorMessage = (String) request.getAttribute("errorMessage");
 if(errorMessage != null){
 	out.print("Error "+errorMessage);
 }
+User  user = (User) session.getAttribute("userDetails");
+boolean isAdmin = (user != null && UserTypes.ADMIN.equals(user.getType())) ? true : false;
+boolean isCustomer = (user != null && UserTypes.CUSTOMER.equals(user.getType())) ? true : false;
 %>
 </head>
 <body>
-<ul>
-  <li><a class="active" href="/flyaway/home">Home</a></li>
-  <li><a href="/flyaway/cities">Cities</a></li>
-  <li><a href="/flyaway/airlines">AirLines</a></li>
-  <li><a href="/flyaway/flightschedule">Flight Schedule</a></li>
-  <li><a href="/flyaway/searchFlights">Book Tickets</a></li>
-  
-  <li style ="float:right"><a class="active" href="/flyaway/changePassword">Change Password</a></li>
-  <li style="float:right"><a class="active" href="logout">Logout</a></li>  
-</ul>
-<div align="center">
+	<ul>
+		<li><a class="active" href="/flyaway/home">Home</a></li>
+		<%
+		if (isAdmin) {
+		%>
+
+		<li><a href="/flyaway/cities">Cities</a></li>
+		<li><a href="/flyaway/airlines">AirLines</a></li>
+		<li><a href="/flyaway/flightschedule">Flight Schedule</a></li>
+		<%
+		}
+		%>
+		<%
+		if (isCustomer) {
+		%>
+		<li><a href="/flyaway/searchFlights">Book Tickets</a></li>
+		<li><a href="/flyaway/getTickets">Get Tickets</a></li>
+		<%
+		}
+		%>
+
+
+		<li style="float: right"><a class="active"
+			href="/flyaway/changePassword">Change Password</a></li>
+		<li style="float: right"><a class="active" href="logout">Logout</a></li>
+	</ul>
+		<%
+	if (isAdmin) {
+	%>
+	<div align="center">
 
         <table border="1" cellpadding="5">
             <caption><h2>Flight schedule details</h2></caption>
@@ -65,7 +90,8 @@ if(errorMessage != null){
     </div>
     
      <div>
-        <form action="/flyaway/flightschedule" method="post">  
+        <form  align="center" action="/flyaway/flightschedule" method="post">  
+        <h2>Register Flight</h2>
           <label>Source</label>
           <input type="text" name="source"/><br>
           <label>Destination</label>
@@ -87,6 +113,7 @@ if(errorMessage != null){
           <input type="submit" value="Add flight details"/>  
         </form>
     </div>
+   <% } %>
 
 </body>
 </html>

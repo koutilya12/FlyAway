@@ -41,7 +41,6 @@ public class AirLineController  extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AirLineService airLineService = new AirLineServiceImpl();
-		RequestDispatcher requestDispatcher =  request.getRequestDispatcher("jsp/airlines.jsp");
 		AirLine airLine = new AirLine();
 		airLine.setAirLineName(request.getParameter("airLineName"));
 		Response respo = airLineService.insertAirLine(airLine);

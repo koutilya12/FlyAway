@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class FlightTicketBooking {
 	@OneToOne
 	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	private User user;
-	@OneToMany//(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
     private List<PassengerDetails> passengers;
     private Double totPrice;

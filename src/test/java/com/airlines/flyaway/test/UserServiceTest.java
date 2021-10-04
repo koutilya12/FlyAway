@@ -31,22 +31,21 @@ public class UserServiceTest {
 		return user;
 	}
 	
-	//@Test
-	public void validateUserDetails() {
+	@Test
+	public void getUserDetails() {
 		User user = prepareUserDetailsObject();
 		UserService userService = new UserServiceImpl();
 		Response response = userService.getUserDetails(user);
-		if(response.getData() != null) {
-			System.out.println(response.getData());
-			Assert.assertTrue(response.getData() != null);
-		}
+		System.out.println("ss"+response);
+		Assert.assertTrue(response.getData() != null);
 		
 	}
 
 	private User prepareUserDetailsObject() {
 		User user = new User();
-		user.setUserId(2);
-		user.setMobileNum("7999779900");
+		//user.setUserId(2);
+		//user.setMobileNum("7999779900");
+		user.setEmailId("vijayisauser@gmail.com");
 		return user;
 	}
 
@@ -60,7 +59,7 @@ public class UserServiceTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void changePasswordTest() {
 		User  user = new User();
 		user.setUserId(1);

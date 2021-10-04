@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.airlines.flyaway.constants.FlightBookingStatus;
 import com.airlines.flyaway.constants.FlyawayConstants;
@@ -55,8 +56,7 @@ public class BookTicketsController extends HttpServlet {
 		FlightScheduleDetails flightScheduleDetails = new FlightScheduleDetails();
 		flightScheduleDetails.setFlightId(Long.parseLong(request.getParameter("flightId")));
 		flightTicketBooking.setFlight(flightScheduleDetails);
-		User user = new User();
-		user.setUserId(5);
+		User user = getUserFromSesion(request);
 		flightTicketBooking.setUser(user);
 		List<PassengerDetails> list = preparePassengerDetailsList(request);
 		flightTicketBooking.setNoOfPersons(Integer.parseInt(request.getParameter("noOfPersons")));
@@ -64,6 +64,12 @@ public class BookTicketsController extends HttpServlet {
 		flightTicketBooking.setFlightBookingStatus(FlightBookingStatus.CREATED);
 		
 		return flightTicketBooking;
+	}
+
+	private User getUserFromSesion(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object user = session.getAttribute(FlyawayConstants.USER_SESSION_OBJECT);
+		return user != null ? (User ) user : null;
 	}
 
 	private List<PassengerDetails> preparePassengerDetailsList(HttpServletRequest request) {

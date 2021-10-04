@@ -18,7 +18,8 @@ input {
 			: 0;
 	%>
 
-	<form id="bookTicketForm" action="/flyaway/bookTickets" method="post">
+	<form id="bookTicketForm" algin="center" action="/flyaway/bookTickets" method="post">
+	<h2>Book Ticket</h2>
 		<table>
 
 			<%

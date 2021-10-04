@@ -2,7 +2,6 @@ package com.airlines.flyaway.services.impl;
 
 
 import java.util.List;
-import java.util.Scanner;
 
 
 import org.hibernate.Session;
@@ -12,14 +11,12 @@ import org.hibernate.query.Query;
 import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.dao.FlyAwayDao;
 import com.airlines.flyaway.dao.impl.FlyAwayDaoImp;
-import com.airlines.flyaway.domain.FlightTicketBooking;
 import com.airlines.flyaway.domain.Response;
 import com.airlines.flyaway.domain.User;
 import com.airlines.flyaway.helpers.Validator;
 import com.airlines.flyaway.services.UserService;
 
 public class UserServiceImpl implements UserService {
-    public Scanner scanner = new Scanner(System.in);
     
     private FlyAwayDao dao;
 	
@@ -76,7 +73,7 @@ public class UserServiceImpl implements UserService {
 		if(list != null && !list.isEmpty()) {
 			return new Response(FlyawayConstants.SUCCESS,list); 
 	    }else {
-	    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.INVALID_USER_DETAILS);
+	    	return new Response(FlyawayConstants.FAILED,FlyawayConstants.EMPTY_USER_DETAILS);
 	    }
 	}
 	
@@ -88,6 +85,8 @@ public class UserServiceImpl implements UserService {
 		query.setParameter("userId", (user == null || user.getUserId() == 0l) ? null : user.getUserId());		
 		query.setParameter("mobNum", (user == null || user.getMobileNum() == null) ? null : user.getMobileNum());
 		query.setParameter("emailId", (user == null || user.getEmailId() == null) ? null : user.getEmailId());
+		query.getParameters().stream().forEach(item -> System.out.println(item.getName() +"::"+query.getParameterValue(item.getName() )));
+		
 	}
 
 	@SuppressWarnings("rawtypes")

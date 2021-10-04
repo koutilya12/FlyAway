@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.airlines.flyaway.constants.FlyawayConstants;
 import com.airlines.flyaway.domain.AirLine;
@@ -24,8 +25,7 @@ public class GetTicketsController extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GetTicketsService getTicketsService = new GetTicketsServiceImpl();
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/getTickets.jsp");
-		User user = new User();
-		user.setUserId(5);
+		User user = getUserFromSesion(request);
 		FlightTicketBooking flightTicketBooking = new FlightTicketBooking();
 		flightTicketBooking.setUser(user);
 		Response respo = getTicketsService.getTicketBookingDetails(flightTicketBooking);
@@ -39,6 +39,12 @@ public class GetTicketsController extends HttpServlet {
 			request.setAttribute("errorMessage"," Details not found");
 		}
 		requestDispatcher.forward(request, response);
+	}
+	
+	private User getUserFromSesion(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object user = session.getAttribute(FlyawayConstants.USER_SESSION_OBJECT);
+		return user != null ? (User ) user : null;
 	}
 	
 	

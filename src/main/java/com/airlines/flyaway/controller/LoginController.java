@@ -26,6 +26,7 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 7332867541446258780L;
 		
 		public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 			String emailId = request.getParameter("emailId");
 			String password = request.getParameter("password");
 			
@@ -48,16 +49,19 @@ public class LoginController extends HttpServlet {
 			
 		}
 
+
 		@SuppressWarnings("unchecked")
 		private void createSession(String emailId, UserService userService, HttpServletRequest request) {
 			User user = new User();
 			user.setEmailId(emailId);
 			Response response = userService.getUserDetails(user);
-			if (FlyawayConstants.SUCCESS.equals(response.getData())) {
+			System.out.println("rsp122"+response);
+			if (FlyawayConstants.SUCCESS.equals(response.getStatus())) {
 				List<User> users = (List<User>) response.getData();
+				System.out.println("sas"+users.toString());
 				if (users.get(0) != null) {
 					HttpSession session = request.getSession();
-					session.setAttribute("userDetails", users.get(0));
+					session.setAttribute(FlyawayConstants.USER_SESSION_OBJECT, users.get(0));
 				}
 			}
 

@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import = "java.util.List,java.util.ArrayList" %>
 <%@ page import = "com.airlines.flyaway.domain.FlightTicketBooking" %>
+<%@ page import = "com.airlines.flyaway.domain.User" %>
+<%@ page import = "com.airlines.flyaway.constants.UserTypes" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,25 +23,45 @@ if(successMessage != null){
 out.print(successMessage);
 }
 
+User  user = (User) session.getAttribute("userDetails");
+boolean isAdmin = (user != null && UserTypes.ADMIN.equals(user.getType())) ? true : false;
+boolean isCustomer = (user != null && UserTypes.CUSTOMER.equals(user.getType())) ? true : false;
 List<FlightTicketBooking> ticketdetails = new ArrayList<>();
 ticketdetails = (List<FlightTicketBooking>) request.getAttribute("ticketdetails");
 
 %>
 </head>
 <body>
-<ul>
-  <li><a class="active" href="/flyaway/home">Home</a></li>
-  <li><a href="/flyaway/cities">Cities</a></li>
-  <li><a href="/flyaway/airlines">AirLines</a></li>
-  <li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
-  <li><a href="/flyaway/searchFlights">Book Tickets</a></li>
-  <li><a href="/flyaway/getTickets">Get Tickets</a></li>  
-  
-  <li style ="float:right"><a class="active" href="/flyaway/changePassword">Change Password</a></li>
-  <li style="float:right"><a class="active" href="logout">Logout</a></li>  
-</ul>
+	<ul>
+		<li><a class="active" href="/flyaway/home">Home</a></li>
+		<%
+		if (isAdmin) {
+		%>
 
-<div align="center">
+		<li><a href="/flyaway/cities">Cities</a></li>
+		<li><a href="/flyaway/airlines">AirLines</a></li>
+		<li><a href="/flyaway/flightschedule">Flight Schedules</a></li>
+		<%
+		}
+		%>
+		<%
+		if (isCustomer) {
+		%>
+		<li><a href="/flyaway/searchFlights">Book Tickets</a></li>
+		<li><a href="/flyaway/getTickets">Get Tickets</a></li>
+		<%
+		}
+		%>
+
+		<li style="float: right"><a class="active"
+			href="/flyaway/changePassword">Change Password</a></li>
+		<li style="float: right"><a class="active" href="logout">Logout</a></li>
+	</ul>
+		<%
+	if (isCustomer) {
+	%>
+
+	<div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>Ticket Details</h2></caption>
             <tr>
@@ -65,6 +88,7 @@ ticketdetails = (List<FlightTicketBooking>) request.getAttribute("ticketdetails"
             </c:forEach>
         </table>
 </div>
+   <% } %>
 
 </body>
 </html>
