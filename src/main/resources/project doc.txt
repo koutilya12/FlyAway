@@ -1,0 +1,144 @@
+Github link: https://github.com/koutilya12/flyaway.git
+
+1. DAO - Database accessing layer.
+Spring web application flow: 
+  MVC Architecture: 
+   Ex-(Login form): UI(View) --> (passing Http request)--> Controller(handles request) --> Service(In service, login service) <--> (DAO) <--> DataBase
+   UI - login form page
+   controller handles request - An object is created based on the request params.
+2. Requirements: For running the Application , JRE is necessary. For development, the Technologies used are: • JDK 1.8 • Eclipse (IDE). 
+   Technical Specifications: Java, jsp, servlets, hibernate, mysql, html, css, javascript, maven, junit.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Task list:we planned 2 sprints and achieved the following schedules;
+Sprint 1:
+1. Project Setup. 
+2. Writing pojos. 
+3. Writing Service Interfaces. 
+4. Implementing Services(Actual Task).
+Sprint 2: 
+5. Writing Controller requests. 
+6. Writing Jsp. 
+7. Junit Test cases.
+8. Integration testing and Documentation.
+ 
+--> Types of Users: Admin & Customer.
+1. Admin operations for the Admin login page:
+  1. Admin can login.
+  2. Admin can change password after login.
+  3. Admin can insert, update & get cities(source & destination).
+      3.1 Insert.
+      3.2 get.
+  4. Admin can Insert, delete & get a list of airlines
+      4.1 Insert.
+      4.2 get.  
+  5. Admin can Insert, delete & get list of flights,
+     where each flight has a source, destination,
+     airlineId, ticket price.
+      5.1 Insert.
+      5.2 Update
+
+2. User operations:
+  1. User can enter travel Details like Date of travel, Source, Destination & the no.of Persons.(then, available Flights with Ticket Prices will be shown).  
+  2. User can select a Flight to book.(Then, User will be directed to Register Page).
+  3. Then, User can register by entering their Personal details on the register page.(In the next page, Details of Flight booked is displayed).
+  4. User can pay via a dummy payment gateway.(On completion of payment, confirmation page is shown).
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Services:
+2. User Services:
+   interface UserService-
+2.1. validateLogin(User user);
+   * This Service method verifies User details when the User 
+     performs login activity and validates if User details are found in the database.
+  
+2.2. getUserDetails(User user);
+   * This Service method performs search operation against the given user details, in the database 
+     and returns the related information of the respective User.
+   
+2.3. changePassword(String oldPassword,User user);
+   * This Service method provides the User(either Admin/ Customer) with the 
+     facility of changing the password.
+   * User can change create a new password against the respective user Id by 
+     providing the old password.
+   
+4. registerUser(User user);
+   * This Service allows a new User to create a new account by registering, and the 
+     details are saved in the database.
+ 	  
+
+3. Cities Services:
+   interface CitiesService-
+   In Cities table, Validate for duplicates.
+3.1 Insert service - 
+    insertCity(City city);
+    * This Service method allows Admin to Insert new cities in the database. 
+    
+3.2 Get service -
+    getCity(City city);
+    * This Service method allows User to search for a City name, from the database.
+   
+
+4. Airlines Services: 
+   interface AirLineService-
+   In Airlines table, Validate for duplicates.
+4.1 Insert Service -
+    insertAirLine(AirLine airLine);
+     * This Service method allows Admin to Insert AirLine name in the database.
+     
+4.2 Delete Service -
+    deleteAirLine(AirLine airLine);
+    * This Service method allows Admin to delete Airline name from the database.
+    
+4.3 Get Service -
+    getAirLine(AirLine airLine);
+   * This Service allows User to search for a specific Airline name from the database. 
+	
+
+5. Flight Schedule Details Services:
+    interface FlightScheduleService- 
+5.1 Insert -
+    insertFlight(FlightScheduleDetails flightScheduleDetails);
+    * This Service method allows Admin to insert Flight details in the datbase.
+   
+5.2 Get -
+    public List<FlightScheduleDetails> searchFlights(FlightScheduleSearchCriteria flightScheduleSearchCriteria);
+    * This Service method allows User to perform search operation for the flight details.
+  
+
+6. Book Tickets Services: 
+   interface BookTicketService-
+6.1 Save Ticket -
+    saveTicket(FlightTicketBooking flightTicketBooking);
+    * This Service method insert ticket details in the database.  Ticket status - Created.
+    *Validate availability of flight capacity + Calculate price for no.of persons & Insert into Ticket booking table + 
+     Enter into Passenger details table + Update filled capacity column in flight_schedule_details.
+    
+6.2 Update Ticket -
+    updateTicket(long bookingId, String txnId);
+    * This Service method updates the status of the ticket from "Created" to "Confirm" or "Rejected". 
+    * Update booking status in Booking table (If payment done, confirmed. If payment not done, failed) - If payment failed, Update filled capacity
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Description & Core Java concepts:
+1. This portal allows active user interaction to seaarch for available flights and book tickets.
+2. Performed CRUD operations.
+3. Implemented Session management, Transaction management, Task scheduling.
+4. Achieved Unit testing through junit test cases.
+5. Implemented MVC architecture
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hoe to execute the project:
+1. To create a database, run the "flyaway DB script" file present in src/main/resources folder in the mysql database.
+2. In order to create admin user, just insert the admin details with user type ADMIN in the user table in flyaway database
+3. Conduct maven build i.e; clean and install.
+4. Copy the flyaway.var file from target folder and paste in webapps of tomcat
+5. Run the tomcat server
+6. Application runs on the tomcat default port i.e; localhost:8080.
+7. Admin can login with the given credentials in the database and can perform  his admin roles which are detailed above.
+8. User can login by registering the user details.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Developer details: M.Koutilya Theertha
